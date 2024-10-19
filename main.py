@@ -22,14 +22,14 @@ class Main:
         director = input("Ingresa usuario: ")
         contrasena = input("Ingresa tu contraseña: ")
 
-        if director != director:
+        if director != "Director-64":
                 print("\nUsuario incorrecto. Intenta de nuevo")
                 intentos = intentos + 1
-                if contrasena != contrasena: 
+                if contrasena != "Ingresando12$": 
                     print("\nContraseña incorrecta. Intenta de nuevo")
                     intentos = intentos + 1
             
-        elif contrasena == contrasena:
+        elif contrasena == "Ingresando12$":
             while True:
                     print("\nBIENVENIDO AL ZOO")
                     
@@ -769,4 +769,4 @@ class Main:
                         zoo.registrar_comida(alimentacion)
                         print("Proceso registrado correctamente")
                         
-    print("INCORRECTO")
+        print("Incorrecto")
