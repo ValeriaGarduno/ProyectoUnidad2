@@ -65,11 +65,13 @@ class Main:
                             while True:
                                 enfermedades= input("REGISTRAR ENFERMEDAD si/no")
                                 if enfermedades == "si":
-                                    zoo.registrar_enfermedades(animales, enfermedades)
-                                    zoo.reg_e(enfermedades)
+                                    enfermedad= input("Ingresa el nombre de la enfermedad ")
+                                    enfermedades = Enfermedades(enfermedad=enfermedad)
+                                    zoo.registrar_enfermedades (animales, enfermedades)
                                     mas=input("quiere añadir mas yes/no    ")
                                     if mas == "no":
                                         break
+                                        
                                 
                             zoo.registrar_animales(animales)
                             print("\n Animal registrado correctamente ")
@@ -157,68 +159,50 @@ class Main:
                             
                                 print("\nTrabajador de administracion registrado correctamente")
                                 
-                        elif opcion_registro == "3":
-                            ##REGISTRAR VISITANTE
-                            nombre = input("\nIngresa el nombre: ")
-                            apellido = input("Ingresa el apellido: ")
-                            curp = input("Ingresa el curp: ")
-                            ano = int(input("Ingresa el año de registro: "))
-                            mes = int(input("Ingresa el mes de registro: "))
-                            dia = int(input("Ingresa el dia de registro: "))
-                            fecha_registro = datetime(ano, mes, dia)
-                            ano_nacimiento = int(input("Ingresa el año de nacimineto: "))
-                            mes_nacimiento = int(input("Ingresa el mes de nacimiento: "))
-                            dia_nacimiento = int(input("Ingresa el dia de nacimiento: "))
-                            fecha_nacimiento = datetime(ano_nacimiento, mes_nacimiento, dia_nacimiento)
-                            id_visitante = zoo.id_visitante(nombre=nombre)
-                            
-                            visitante = Visitantes(id_visitante=id_visitante ,nombre=nombre, apellido= apellido, curp=curp, fecha_registro=fecha_registro, fecha_nacimiento=fecha_nacimiento)
-                            zoo.registrar_visitante(visitante)
-                            print("\nVisitante registrado correctamente")
 
                         elif opcion_registro == "4": #REGISTRAR VISITA (R)
                             print("Elegiste registrar visita: " )
-                        while True:
-                            id_guia = input("Imgresa el ID del guia a cargo: ") 
-                            guia_cargo = zoo.checar_id_guia(id_guia)
-                            if guia_cargo is None:
-                                break
-                            print("Guia no encontrado, intenta denuevo ")
-                            
-                        cantidad_ninos = int(input("Ingresa la cantidad de ninos: "))
-                        cantidad_adultos = int(input("Ingresa la cantidad de adultos: "))
-                        num_visitantes = cantidad_ninos + cantidad_adultos
-                        print(f"Esta visita tiene {num_visitantes}")
-                        contador = 0 
-                        while contador < num_visitantes:
-                            id_visitante = input("Ingresa ID  del visitante: ")
-                            visitante = zoo.obtener_visitante_por_id(id_visitante)
-                            
-                            if visitante:
-                                visitante.numero_visitas += 1
-                            
-                                print(f"Visitante {visitante.nombre} registrado. Numero de visitas actual: {visitante.numero_visitas}")
-                                contador += 1
-                            else:
-                                print(f"El ID del visitante {id_visitante} no es valido. Aseguate de que el visitante este registrado.")
+                            while True:
+                                id_guia = input("Imgresa el ID del guia a cargo: ") 
+                                guia_cargo = zoo.checar_id_guia(id_guia)
+                                if guia_cargo is None:
+                                    break
+                                print("Guia no encontrado, intenta denuevo ")
                                 
-                        ano = int(input("Ingresa el ano de la visita: "))
-                        mes = int(input("Ingresa el mes de la visita: "))
-                        dia = int(input("Ingresa el dia de la visita: "))
-                        fecha_visita = datetime(ano, mes, dia)           
-                        
-                        if contador == 5:
-                            nine=input("El usuario que cumple su quienta visita es adulto (no/si) ")
-                            if nine == "no":
-                                costo_visita= (50*0.8)+ (cantidad_ninos-1)*(50)+ cantidad_adultos*(100)
-                            elif nine == "si":
-                                costo_visita= (100*0.8)+ (cantidad_adultos-1)*(100)+ cantidad_ninos*(50)
-                        else:
-                            costo_visita= cantidad_ninos*50 + cantidad_adultos*100
-                        
-                        visita = Visitas(costo_visita=costo_visita, fecha_visita=fecha_visita, cantidad_adultos=cantidad_adultos, cantidad_ninos=cantidad_ninos)
-                        zoo.registrar_visitas(visita)
-                        print("Visita registrada exitosamente.")   
+                            cantidad_ninos = int(input("Ingresa la cantidad de ninos: "))
+                            cantidad_adultos = int(input("Ingresa la cantidad de adultos: "))
+                            num_visitantes = cantidad_ninos + cantidad_adultos
+                            print(f"Esta visita tiene {num_visitantes}")
+                            contador = 0 
+                            while contador < num_visitantes:
+                                id_visitante = input("Ingresa ID  del visitante: ")
+                                visitante = zoo.obtener_visitante_por_id(id_visitante)
+                                
+                                if visitante:
+                                    visitante.numero_visitas += 1
+                                
+                                    print(f"Visitante {visitante.nombre} registrado. Numero de visitas actual: {visitante.numero_visitas}")
+                                    contador += 1
+                                else:
+                                    print(f"El ID del visitante {id_visitante} no es valido. Aseguate de que el visitante este registrado.")
+                                    
+                            ano = int(input("Ingresa el ano de la visita: "))
+                            mes = int(input("Ingresa el mes de la visita: "))
+                            dia = int(input("Ingresa el dia de la visita: "))
+                            fecha_visita = datetime(ano, mes, dia)           
+                            
+                            if contador == 5:
+                                nine=input("El usuario que cumple su quienta visita es adulto (no/si) ")
+                                if nine == "no":
+                                    costo_visita= (50*0.8)+ (cantidad_ninos-1)*(50)+ cantidad_adultos*(100)
+                                elif nine == "si":
+                                    costo_visita= (100*0.8)+ (cantidad_adultos-1)*(100)+ cantidad_ninos*(50)
+                            else:
+                                costo_visita= cantidad_ninos*50 + cantidad_adultos*100
+                            
+                            visita = Visitas(costo_visita=costo_visita, fecha_visita=fecha_visita, cantidad_adultos=cantidad_adultos, cantidad_ninos=cantidad_ninos)
+                            zoo.registrar_visitas(visita)
+                            print("Visita registrada exitosamente.")   
 
                         
                     elif opcion_menu == "2": ##MENU MOSTRAR
@@ -230,6 +214,7 @@ class Main:
                         print("5. Mostrar administracion") #done
                         print("6. Mostrar Visitas")
                         print("7. Mostrar mantenimiento realizado")
+                        print("8. Mostrar visitantes")
                         
                         opcion_mostrar =input("Ingresa la opcion que deseas: ")
                         
@@ -260,6 +245,10 @@ class Main:
                         elif opcion_mostrar == "7":
                             print("**Alimentacion / Mantenimiento***")
                             zoo.listar_comida()
+                            
+                        elif opcion_mostrar == "8":
+                            print("**Visitantes***")
+                            zoo.listar_visitante()
                     
                     elif opcion_menu == "3" : ##MENU MODIFICAR
                         

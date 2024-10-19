@@ -22,3 +22,7 @@ class Visitantes:
         self.fecha_nacimiento = fecha_nacimiento 
         self.numero_visitas = 0 # Inicializar  
         self.guia = []
+        
+    def mostrar_info_visitantes(self):
+        info = f"Nombre completo: {self.nombre} {self.apellido}, Curp: {self.curp}, Num. Visitas{self.numero_visitas}, ID: {self.id_visitante}"
+        return info

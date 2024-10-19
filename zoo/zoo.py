@@ -47,6 +47,8 @@ class Zoo:
     lista_visitantes.append(visitante_prueba4)
     guia_prueba = Guia(id_trabajador="guia1", nombre="Juan", apellido="Perez", fecha_nacimiento=datetime(2006, 2, 1), fecha_ingreso_trabajador=(2009, 4, 2), rfc="23cdf", curp="ffdfgdgvs", salario="1234", horario="12:00 - 1:00", rol=Rol.GUIA)
     lista_guia.append(guia_prueba)
+    mantenimientp_prueba = Mantenimiento(id_trabajador="guia1", nombre="Juan", apellido="Perez", fecha_nacimiento=datetime(2006, 2, 1), fecha_ingreso_trabajador=(2009, 4, 2), rfc="23cdf", curp="ffdfgdgvs", salario="1234", horario="12:00 - 1:00", rol=Rol.MANTENIMIENTO)
+    lista_mantenimiento.append(mantenimientp_prueba)
 
     #ANIMALES
     def registrar_enfermedades(self, animal: Animales, enfermedades: Enfermedades):
@@ -123,14 +125,18 @@ class Zoo:
         id_visitante = f"V{longitud_mas_uno}{ano_actual}{nombre[:2].upper()}"
         return id_visitante         
     
-    def registrar_visitante(self, visitantes: Visitantes):
-      self.lista_visitantes.append(visitantes) 
+    def registrar_visitante(self, visitante: Visitantes):
+      self.lista_visitantes.append(visitante) 
        
     def obtener_visitante_por_id(self, id_visitante: str):
         for visitante in self.lista_visitantes:
             if visitante.id_visitante == id_visitante:
                 return visitante
         return None
+    
+    def listar_visitante(self):
+        for visitante in self.lista_visitantes:
+            print(visitante.mostrar_info_visitantes())
     
     def modificar_visitante(self, id_visitante: str, nuevo_nombre: str = None, nuevo_apellido: str = None,  nuevo_nacimiento: datetime= None, nuevo_ingreso: datetime= None, nuevo_visitas: str=None ,nuevo_curp: str= None ):
         for visitante in self.lista_visitantes:

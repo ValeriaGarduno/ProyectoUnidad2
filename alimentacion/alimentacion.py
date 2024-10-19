@@ -16,3 +16,8 @@ class Alimentacion():
         self.proceso = proceso
         self. observaciones = observaciones
         self.fecha_proceso = fecha_proceso
+    
+    def mostrar_info_alimentacion(self):
+        
+        info = f"Proceso: {self.proceso}, Observaciones: {self.observaciones}, Fecha{self.fecha_proceso}"
+        return info
